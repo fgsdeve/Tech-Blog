@@ -1,0 +1,41 @@
+{{> header}}
+
+<div class="container">
+  <div class="post">
+    <h2>{{title}}</h2>
+    <p>{{content}}</p>
+    <p>Posted by {{user.username}} on {{format_date createdAt}}</p>
+  </div>
+
+  {{#if logged_in}}
+  <form class="edit-post-form">
+    <input type="text" id="post-title" name="post-title" placeholder="Enter post title" value="{{title}}" />
+    <textarea id="post-content" name="post-content" rows="4" cols="50" placeholder="Enter post content">{{content}}</textarea>
+    <button type="submit">Update Post</button>
+    <button type="button" class="delete-post-btn">Delete Post</button>
+  </form>
+  {{/if}}
+
+  <div class="comments">
+    <h3>Comments</h3>
+    {{#each comments}}
+      <div class="comment">
+        <p>{{comment_text}}</p>
+        <p>Commented by {{user.username}} on {{format_date createdAt}}</p>
+      </div>
+    {{/each}}
+
+    {{#if logged_in}}
+      <form class="comment-form">
+        <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Add a comment"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    {{else}}
+      <p>Please <a href="/login">login</a> to add a comment.</p>
+    {{/if}}
+  </div>
+</div>
+
+{{> footer}}
+<script src="/js/comment.js"></script>
+<script src="/js/post.js"></script>
