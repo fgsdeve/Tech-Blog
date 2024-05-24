@@ -1,4 +1,4 @@
-require('dotenv').config();
+/* require('dotenv').config();
 const Sequelize = require('sequelize');
 
 console.log("Database Name:", process.env.DB_NAME);
@@ -25,3 +25,4 @@ sequelize.authenticate()
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+ */

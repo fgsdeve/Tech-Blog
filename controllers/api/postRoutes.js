@@ -9,9 +9,10 @@ router.post('/', withAuth, async (req, res) => {
       ...req.body,
       user_id: req.session.user_id,
     });
-
-    res.status(200).json(newPost);
+    const postId = newPost.id
+    res.status(200).redirect(`/post/${postId}`);
   } catch (err) {
+    console.log(err)
     res.status(400).json(err);
   }
 });
@@ -52,7 +53,7 @@ router.delete('/:id', withAuth, async (req, res) => {
       return;
     }
 
-    res.status(200).json(postData);
+    res.status(200).json("post deleted");
   } catch (err) {
     res.status(500).json(err);
   }
